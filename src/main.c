@@ -27,7 +27,7 @@ static void inbox_received_callback(DictionaryIterator *iterator, void *context)
 
   // If all data is available, use it
   if(temp_tuple && conditions_tuple) {
-    snprintf(temperature_buffer, sizeof(temperature_buffer), "%dC", (int)temp_tuple->value->int32);
+    snprintf(temperature_buffer, sizeof(temperature_buffer), "%dF", (int)temp_tuple->value->int32);
     snprintf(conditions_buffer, sizeof(conditions_buffer), "%s", conditions_tuple->value->cstring);
 
     // Assemble full string and display
@@ -66,7 +66,7 @@ static void tick_handler(struct tm *tick_time, TimeUnits units_changed) {
   update_time();
 
   // Get weather update every 2 minutes
-  if(tick_time->tm_min % 1 == 0) {
+  if(tick_time->tm_sec % 10 == 0) {
     // Begin dictionary
     DictionaryIterator *iter;
     app_message_outbox_begin(&iter);
@@ -86,11 +86,11 @@ static void battery_update_proc(Layer *layer, GContext *ctx) {
   int width = (int)(float)(((float)s_battery_level / 100.0F) * 114.0F);
 
   // Draw the background
-  graphics_context_set_fill_color(ctx, GColorBlue);
+  graphics_context_set_fill_color(ctx, GColorRed);
   graphics_fill_rect(ctx, GRect(0, 0, bounds.size.w, bounds.size.h), 0, GCornerNone);
 
   // Draw the bar
-  graphics_context_set_fill_color(ctx, GColorRed);
+  graphics_context_set_fill_color(ctx, GColorWhite);
   graphics_fill_rect(ctx, GRect(0, 0, width, bounds.size.h), 0, GCornerNone);
 }
 
@@ -153,7 +153,7 @@ static void main_window_load(Window *window) {
 	battery_state_service_subscribe(battery_callback);
 
 	// Create battery meter Layer
-s_battery_layer = layer_create(GRect(14, 20, 115, 2));
+s_battery_layer = layer_create(GRect(14, 0, 115, 2));
 layer_set_update_proc(s_battery_layer, battery_update_proc);
 
 // Add to Window

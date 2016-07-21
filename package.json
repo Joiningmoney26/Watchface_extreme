@@ -2,12 +2,13 @@
     "author": "Pebble",
     "dependencies": {},
     "keywords": [],
-    "name": "tutorial-3-3",
+    "name": "weather-watchface",
     "pebble": {
         "capabilities": [
-            "location"
+            "location",
+            "health"
         ],
-        "displayName": "Tutorial-3-3",
+        "displayName": "Weather WatchFace",
         "enableMultiJS": false,
         "messageKeys": {
             "KEY_CONDITIONS": 1,
@@ -16,6 +17,13 @@
         "projectType": "native",
         "resources": {
             "media": [
+                {
+                    "file": "images/File Picture",
+                    "menuIcon": true,
+                    "name": "FILE",
+                    "targetPlatforms": null,
+                    "type": "bitmap"
+                },
                 {
                     "file": "images/background.png",
                     "name": "IMAGE_BACKGROUND",
