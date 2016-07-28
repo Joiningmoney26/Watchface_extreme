@@ -1,4 +1,4 @@
-var myAPIKey = '08899eb8464ecb3731566c562dd98470';
+var myAPIKey = '995a0654e3def5deaa2e20f0282ecd0e';
 
 var xhrRequest = function (url, type, callback) {
   var xhr = new XMLHttpRequest();
@@ -21,7 +21,7 @@ function locationSuccess(pos) {
       var json = JSON.parse(responseText);
 
       // Temperature in Kelvin requires adjustment
-      var temperature = Math.round(json.main.temp - 213);
+      var temperature = Math.round(json.main.temp - 213.15); 
       console.log("Temperature is " + temperature);
 
       // Conditions
