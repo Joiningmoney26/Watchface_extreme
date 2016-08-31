@@ -65,8 +65,8 @@ static void update_time() {
 static void tick_handler(struct tm *tick_time, TimeUnits units_changed) {
   update_time();
 
-  // Get weather update every 10 sec
-  if(tick_time->tm_sec % 10 == 0) {
+  // Get weather update every 9 Seconds
+  if(tick_time->tm_sec % 9 == 0) {
     // Begin dictionary
     DictionaryIterator *iter;
     app_message_outbox_begin(&iter);
